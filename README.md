@@ -101,7 +101,14 @@ Chaque route sensible (`/post`) est protégée par un token JWT que tu dois stoc
 
 ## 📸 Aperçu
 
-![Capture d'écran 2025-04-21 193609](https://github.com/user-attachments/assets/de3b1578-a885-4d99-940e-e0846a28d842)
+![Capture d'écran 2025-04-22 222841](https://github.com/user-attachments/assets/3d7cefc7-9e89-455b-a26c-794983b937aa)
+![Capture d'écran 2025-04-22 222912](https://github.com/user-attachments/assets/95ca0543-23e8-4880-aa93-0fe3f265ffdb)
+![Capture d'écran 2025-04-22 223349](https://github.com/user-attachments/assets/c6ef6529-e3d1-4737-b143-eada2e3f3cc6)
+![Capture d'écran 2025-04-22 223800](https://github.com/user-attachments/assets/e3390d7b-34f9-4aea-98c6-1a6a1c2c6281)
+![Capture d'écran 2025-04-22 223931](https://github.com/user-attachments/assets/0f274bd3-2fa4-4a56-9e1c-cca7a8bf4e67)
+![Capture d'écran 2025-04-22 224004](https://github.com/user-attachments/assets/a4cdf966-cc77-4a3e-9845-47539af7d455)
+![Capture d'écran 2025-04-22 224004](https://github.com/user-attachments/assets/c742bfd7-29e1-4ff4-aa5b-b54efb7c2b56)
+![Capture d'écran 2025-04-22 224036](https://github.com/user-attachments/assets/41e32e9f-a84d-40e2-a5be-406f3eedfb02)
 
 
 ## 🧑‍💻 Auteur
