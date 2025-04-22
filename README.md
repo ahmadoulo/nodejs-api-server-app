@@ -39,7 +39,7 @@ Docker & Docker Compose – Conteneurisation des services
 🚀 Démarrage rapide avec Docker
 
 Cloner le dépôt :
-
+''bash
 git clone https://github.com/ahmadoulo/nodejs-api-server-app.git
 cd nodejs-api-server-app
 
