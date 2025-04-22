@@ -1,4 +1,5 @@
 Application d'authentification avec publication d'articles
+
 🎯 Objectif du projet
 Ce projet a pour but de développer une application web simple et sécurisée permettant aux utilisateurs de :
 
