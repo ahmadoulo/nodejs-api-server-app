@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Authentification</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+    
+    <div class="login-box active">
+      <h1>Connexion</h1>
+      <form id="login-form">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Connecter</button>
+      </form>
+      <p>Vous n'avez pas un compte ? <a href="#" id="show-register-form">Créer un compte</a></p>
+    </div>
+
+    
+    <div class="register-box">
+      <h1>Création de compte</h1>
+      <form id="register-form">
+        <input type="text" id="register-username" placeholder="Username" required />
+        <input type="password" id="register-password" placeholder="Password" required />
+        <button type="submit">Créer un compte</button>
+      </form>
+      <p>Avez-vous déja un compte ? <a href="#" id="show-login-form">Connecter</a></p>
+    </div>
+  </div>
+
+  <script>
+    const loginBox = document.querySelector('.login-box');
+    const registerBox = document.querySelector('.register-box');
+
+    document.getElementById('show-register-form').addEventListener('click', (e) => {
+      e.preventDefault();
+      loginBox.classList.remove('active');
+      registerBox.classList.add('active');
+    });
+
+    document.getElementById('show-login-form').addEventListener('click', (e) => {
+      e.preventDefault();
+      registerBox.classList.remove('active');
+      loginBox.classList.add('active');
+    });
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const res = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+
+      const data = await res.json();
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('username', username);
+        window.location.href = '/home.html';
+      } else {
+        alert('Login failed');
+      }
+    });
+
+    document.getElementById('register-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('register-username').value;
+      const password = document.getElementById('register-password').value;
+
+      const res = await fetch('/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+
+      if (res.ok) {
+        alert('User created successfully. You can now login.');
+        registerBox.classList.remove('active');
+        loginBox.classList.add('active');
+      } else {
+        alert('User creation failed');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto; /* Ajouté pour permettre le scroll */
+}
+
+/* Container shared */
+.container {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 0.8s ease-in;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Titles */
+h1 {
+  margin-bottom: 25px;
+  font-size: 28px;
+}
+
+/* Input fields */
+input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* Buttons */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #00c9a7;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #00a68a;
+}
+
+/* Links */
+a {
+  color: #00f5d4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Paragraphs */
+p {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+/* Form visibility toggle */
+.login-box,
+.register-box {
+  display: none;
+}
+
+.login-box.active,
+.register-box.active {
+  display: block;
+}
+
+/* Home box */
+.home-box h1 {
+  font-size: 26px;
+  margin-bottom: 25px;
+}
+
+.logout-button {
+  background-color: #ff5e5e;
+  margin-top: 30px;
+}
+
+.logout-button:hover {
+  background-color: #e74c3c;
+}
+
+/* Container for posts with scrolling */
+#posts-container {
+  max-height: 600px; /* Limite la hauteur à 600px, ajustable selon le design */
+  overflow-y: auto;  /* Active le défilement vertical si nécessaire */
+  padding: 15px;
+  margin-top: 20px;
+  text-align: left;
+}
+
+/* Each post styling */
+.post {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.post h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #fff;
+}
+
+.post p {
+  font-size: 16px;
+  color: #ccc;
+}
+
+.post small {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.post hr {
+  margin-top: 15px;
+  border: 1px solid #00c9a7;
+}
+
+
+/* Create Post Form */
+.create-post-box {
+  margin-top: 30px;
+}
+
+.create-post-box input,
+.create-post-box textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+}
+
+.create-post-box textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.create-post-box button {
+  background-color: #00c9a7;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+}
+
+.create-post-box button:hover {
+  background-color: #00a68a;
+}
+
+/* Style pour le bouton supprimer */
+.delete-btn {
+  background-color: #ff5e5e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.delete-btn:hover {
+  background-color: #e74c3c;
+}

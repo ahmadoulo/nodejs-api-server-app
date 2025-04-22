@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Accueil</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="home-box">
+      <h1>Bienvenue, <span id="username-display"></span> !</h1>
+      <button id="create-post-btn">Créer un post</button>
+      <button class="logout-button" id="logout-btn">Se déconnecter</button>
+      
+      <div id="posts-container" style="margin-top: 30px; text-align: left; max-height: 600px; overflow-y: auto;"></div>
+    </div>
+  </div>
+
+  <script>
+    const username = localStorage.getItem('username');
+    const token = localStorage.getItem('token');
+
+    if (!username || !token) {
+      window.location.href = '/';
+    } else {
+      document.getElementById('username-display').textContent = username;
+    }
+
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('username');
+      window.location.href = '/';
+    });
+
+    document.getElementById('create-post-btn').addEventListener('click', () => {
+      window.location.href = '/create_post.html';
+    });
+
+    
+    fetch('/post', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(res => res.json())
+    .then(posts => {
+      const container = document.getElementById('posts-container');
+
+      if (posts.length === 0) {
+        container.innerHTML = "<p>Aucun post pour l'instant.</p>";
+        return;
+      }
+
+      posts.forEach(post => {
+        const postDiv = document.createElement('div');
+        postDiv.classList.add('post');
+        postDiv.setAttribute('id', `post-${post.id}`);
+        postDiv.innerHTML = `
+          <h3>${post.title}</h3>
+          <p>${post.content}</p>
+          <small>Publié le ${new Date(post.created_at).toLocaleString()}</small>
+          <button class="delete-btn" data-post-id="${post.id}">Supprimer</button>
+          <hr />
+        `;
+        container.appendChild(postDiv);
+      });
+
+      
+      document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', deletePost);
+      });
+    })
+    .catch(error => {
+      console.error('Erreur de chargement des posts :', error);
+    });
+
+   
+    function deletePost(event) {
+      const postId = event.target.getAttribute('data-post-id');
+
+      if (!confirm("Voulez-vous vraiment supprimer ce post ?")) {
+        return;
+      }
+
+      fetch(`/post/${postId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(res => {
+        if (res.ok) {
+          document.getElementById(`post-${postId}`).remove();
+        } else {
+          alert('Erreur lors de la suppression du post');
+        }
+      })
+      .catch(error => {
+        console.error('Erreur de suppression du post:', error);
+      });
+    }
+  </script>
+</body>
+</html>
