@@ -23,3 +23,19 @@ Cette application web permet à un utilisateur de :
 
 ## 📦 Structure du projet
 
+├── public/ # Frontend (HTML, JS) ├── server.js # API Node.js principale ├── postRoutes.js # Routes pour les articles ├── .env # Variables d'environnement ├── Dockerfile # Dockerfile backend ├── docker-compose.yml # Déploiement complet (app + BDD) └── init.sql # Script SQL d'initialisation
+
+
+---
+
+## 🚀 Démarrage rapide avec Docker
+
+ **Cloner le dépôt** :
+   ```bash
+   git clone https://github.com/ahmadoulo/nodejs-api-server-app
+   cd nodejs-api-server-app
+
+docker-compose up --build
+
+Accéder à l'app :
+http://localhost:3000
