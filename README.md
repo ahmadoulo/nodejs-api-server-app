@@ -1,4 +1,4 @@
-[# 📝 Projet Node.js Auth + PostgreSQL + Docker
+# 📝 Projet Node.js Auth + PostgreSQL + Docker
 
 ## 📌 Objectif du projet
 
