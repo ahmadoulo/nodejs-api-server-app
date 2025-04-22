@@ -1,95 +1,113 @@
-📋 Application Node.js avec Authentification et Publication d'Articles
+[# 📝 Projet Node.js Auth + PostgreSQL + Docker
 
-🌟 Objectif
+## 📌 Objectif du projet
 
-Cette application web permet à un utilisateur de :
+Créer une application web simple permettant :
 
-🔑 Créer un compte et se connecter (authentification JWT)
+- La **création de compte** ✅
+- La **connexion** avec génération de **JWT** 🔐
+- La **création d'articles** (titre + contenu) 📜
+- La **visualisation** de tous les articles 🗒️
+- La **suppression** d'un article ✂️
 
-📄 Poster des articles (titre + contenu)
+Le tout en mode sécurisé avec **authentification tokenisée**.
 
-📈 Voir les articles publiés
+## 🧰 Technologies utilisées
 
-🗑️ Supprimer ses propres posts
+- **Node.js** + **Express** 🚀
+- **PostgreSQL** 🐘
+- **JWT (JSON Web Token)** 🔐
+- **Bcrypt.js** pour le hachage des mots de passe 🔒
+- **HTML / JS Vanilla** pour l’interface utilisateur 📄
+- **Docker / Docker Compose** 🐳
 
-🛠️ Stack technique
+## ⚙️ Lancement du projet
 
-Node.js + Express – API REST
+### 1. Cloner le dépôt
 
-PostgreSQL – Base de données relationnelle
-
-JWT – Authentification sécurisée par token
-
-bcryptjs – Hachage des mots de passe
-
-HTML/CSS/JS – Interface minimaliste
-
-Docker & Docker Compose – Conteneurisation des services
-
-📦 Structure du projet
-
-├── public/              # Frontend (HTML, JS)
-├── server.js            # API Node.js principale
-├── postRoutes.js        # Routes pour les articles
-├── .env                 # Variables d'environnement
-├── Dockerfile           # Dockerfile backend
-├── docker-compose.yml   # Déploiement complet (app + BDD)
-└── init.sql             # Script SQL d'initialisation
-
-🚀 Démarrage rapide avec Docker
-
-Cloner le dépôt :
-''bash
+```bash
 git clone https://github.com/ahmadoulo/nodejs-api-server-app.git
 cd nodejs-api-server-app
+```
 
-Démarrer l'application :
+### 2. Démarrer les services
 
+```bash
 docker-compose up --build -d
+```
 
-Accéder à l'app :http://localhost:3000
+🎉 L'application est accessible sur `http://localhost:3000`
 
-🧰 Commandes utiles
+## 📂 Arborescence principale
 
-🔄 Rebuilder si nécessaire :
+```bash
+├── Dockerfile
+├── docker-compose.yml
+├── init.sql
+├── public
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   ├── home.html
+│   ├── create_post.js
+│   └── delete_post.js
+├── server.js
+├── postRoutes.js
+└── .env
+```
 
-docker-compose build
+## 🗃️ init.sql (initialisation BDD automatique)
 
-🪑 Supprimer tous les volumes (⚠️ perte des données) :
+Si tu veux que les tables soient créées dès le lancement :
 
-docker-compose down -v
+- Le fichier `init.sql` doit être monté ainsi :
 
-🔍 Se connecter à PostgreSQL :
+```yaml
+volumes:
+  - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  - pgdata:/var/lib/postgresql/data
+```
 
-docker exec -it node-auth-app-db-1 /bin/bash
-psql -U postgres -d auth_db
+⚠️ Si le volume `pgdata` existe déjà, Postgres ne rechargera **pas** le script. Supprime le volume avec :
 
-🗃️ Base de données (init.sql)
+```bash
+docker volume rm nomduprojet_pgdata
+```
 
-La table posts est automatiquement créée à l'initialisation si le volume Docker est vide grâce à init.sql.Pour forcer sa relecture :
+Puis relance :
 
-docker-compose down -v  # Supprime les volumes
-docker-compose up       # Recrée tout proprement
+```bash
+docker-compose up --build -d
+```
 
-🔐 Exemple de token JWT
+## 🛡️ Authentification
 
-Une fois connecté, un token JWT est stocké côté navigateur dans localStorage. Il est ensuite utilisé dans le header Authorization pour les requêtes :
+Chaque route sensible (`/post`) est protégée par un token JWT que tu dois stocker dans `localStorage` côté client.
 
-Authorization: Bearer <token>
+## ✅ Fonctionnalités 
 
-✨ Améliorations futures
+- Créer un compte puis s'authentifier
+- Génération token et stockage coté client
+- Créer un post et supprimer un post autorisé uniquement si le token est fourni et valide
 
-✅ Séparation claire frontend/backend
+## 🚧 Améliorations futures
 
-⏳ Validation des champs en front
+- 🔄 Ajout de la modification des posts
+- 👤 Affichage des posts uniquement de l’utilisateur connecté
+- 📷 Ajout d’un système d’upload d’images
+- 📱 Version mobile responsive
 
-🔐 Refresh token
+---
 
-🖼️ Upload d'image pour les articles
+## 📸 Aperçu
 
-💬 Système de commentaires
+![Capture d'écran 2025-04-21 193609](https://github.com/user-attachments/assets/de3b1578-a885-4d99-940e-e0846a28d842)
 
-👨‍💼 Auteur
 
-Développé avec ❤️ par Ahmadou Sakhir LO. Pour toute suggestion, issue ou amélioration, n'hésitez pas à contribuer !
+## 🧑‍💻 Auteur
 
+Ahmadou Sakhir LO
+
+---
+
+💬 Pour toute suggestion ou bug, ouvre une issue ou une PR ! Merci 🙏
