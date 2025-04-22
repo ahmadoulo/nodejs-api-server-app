@@ -1,15 +1,25 @@
-Application d'authentification avec publication d'articles
+# 📝 Application Node.js avec Authentification et Publication d'Articles
 
-🎯 Objectif du projet
-Ce projet a pour but de développer une application web simple et sécurisée permettant aux utilisateurs de :
+## 🎯 Objectif
 
-Créer un compte et se connecter via JWT (JSON Web Tokens)
+Cette application web permet à un utilisateur de :
+- Créer un compte et se connecter (authentification JWT)
+- Poster des articles (titre + contenu)
+- Voir les articles publiés
+- Supprimer ses propres posts
 
-Publier des articles avec un titre et un contenu
+---
 
-Consulter les articles postés par tous les utilisateurs
+## 🛠️ Stack technique
 
-Supprimer ses propres articles
+- **Node.js + Express** – API REST
+- **PostgreSQL** – Base de données relationnelle
+- **JWT** – Authentification sécurisée par token
+- **bcryptjs** – Hachage des mots de passe
+- **HTML/CSS/JS** – Interface minimaliste
+- **Docker & Docker Compose** – Conteneurisation des services
 
-C'est une base idéale pour apprendre ou démarrer un projet plus complexe avec authentification et gestion de contenus.
+---
+
+## 📦 Structure du projet
 
