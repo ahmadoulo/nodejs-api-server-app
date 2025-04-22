@@ -35,6 +35,7 @@ Cette application web permet à un utilisateur de :
    git clone https://github.com/ahmadoulo/nodejs-api-server-app
    cd nodejs-api-server-app
 
+```bash
 docker-compose up --build
 
 Accéder à l'app :
